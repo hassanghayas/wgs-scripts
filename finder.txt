@@ -1,0 +1,16 @@
+
+####################################################################################################
+######## this file contain codes for running resfinder, plasmidfinder, and virulence finder ########
+####################################################################################################
+
+# activate conda environment
+conda activate finders
+
+# run virulencefinder
+virulencefinder.py -x -i test/S1_1.fastq test/S1_2.fastq -o testout/ -p virulencefinder_db/
+
+#run resfinder
+run_resfinder.py -ifq test/S1_1.fastq test/S1_2.fastq -o testout/resfinderout/ -acq
+
+#run plasmidfinder
+plasmidfinder.py -x -q -i test/S1_1.fastq test/S1_2.fastq -o testout/plasmidfinderout/
