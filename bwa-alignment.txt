@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# convert .gbk into .fa file
+biopython.convert output/reference/EnterrococcusFaecium.gbk genbank output/reference/EnterrococcusFaecium.fa fasta
+
+# index reference genome
+bwa index output/reference/EnterococcusFaecium.fa
+samtools output/reference/faidx EnterococcusFaecium.fa
+
+#aligne short reads to the reference genome
+bwa mem output/reference/EnterococcusFaecium.fa output/trimmed_reads/S1.clean_1.fastq.gz output/trimmed_reads/S1.clean_2.fastq.gz > output/bwa/S1.sam
+
+# Filter SAM file for soft & hard clipped alignments
+samclip --ref output/reference/EnterococcusFaecium.fa S1.sam >S1.clipped.sam
+
+# convert sam file into bam file
+samtools view -b S1.clipped.sam >S1.clipped.bam
+
+# sort bam file 
+samtools sort S1.clipped.bam -o S1.sorted.bam
+
+# index sorted bam file for igv
+samtools index S1.sorted.bam
+
+#count aligned reads
+samtools view S1.sorted.bam | wc -l
+
+
+
+
