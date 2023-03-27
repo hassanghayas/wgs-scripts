@@ -1,0 +1,16 @@
+# to extract the unmapped reads from the sam or bam file
+samtools view -b -f 4 S1.bam >S1.unmapped.bam
+
+# to extract the unmapped reads from the sam or bam file >.sam formate
+samtools view -f 4 S1.bam >S1.unmapped.sam
+
+# to extract the mapped reads from the sam or bam file
+samtools view -b -F 4 S1.bam >S1.mapped.bam
+
+samtools view S1.bam |head
+
+# statistics about alignment
+samtools flagstat SAMPLE.bam > sample.alignment-stats.txt
+
+# comprehensive statistics about alignment
+samtools stats SAMPLE.bam |grep ^SN | cut -f 2-
