@@ -16,3 +16,6 @@ bcftools merge -o merged.vcf.gz -0 *.vcf.gz
 nano merged.vcf.gz > merged_vcf.csv
 
 ## this will open this in the text editor, you can now save it as .csv file and it will now be avaialable as a excel file
+
+#bam file indexing
+parallel samtools index ::: *.bam
