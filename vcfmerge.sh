@@ -1,7 +1,4 @@
-# Activate conda alignment environment for merge_vcf
-
-conda activate alignment
-
+#for marging VCF file follow the following command
 # do indexing using tabix do all together using parallel command
 
 parallel tabix -p vcf ::: *.vcf.gz
